@@ -5,51 +5,20 @@ const cors = require("cors");
 
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
+const corsOptions = require("./config/corsOptions");
 
 const PORT = process.env.PORT || 3000;
 
 app.use(logger);
 
-const whitelist = ["http://localhost:3000", "https://www.google.com"];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  optionsSuccessStatus: 200,
-};
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.get("^/$|/index(.html)?", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
-});
-
-app.get("/new-page.(html)?", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "new-page.html"));
-});
-
-app.get("/old-page.(html)?", (req, res) => {
-  res.redirect(301, "/new-page.html");
-});
-
-// Rout handlers
-app.get(
-  "/hello.(html)?",
-  (req, res, next) => {
-    console.log("attempted to load hello.html");
-    next();
-  },
-  (req, res) => {
-    res.send("Hello World!");
-  }
-);
+app.use("/", require("./routes/root"));
+app.use("/employees", require("./routes/api/employees"));
 
 app.all("*", (req, res) => {
   res.status(404);

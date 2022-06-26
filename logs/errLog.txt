@@ -1,1 +1,2 @@
 20220624	11:37:19	69bacf7d-9920-406b-8bdf-c36094ec7ebc	Error: Not allowed by CORS
+20220625	18:17:43	7d62d618-f8ec-4fbf-8610-27a84ecd1364	TypeError: path.join is not a function
