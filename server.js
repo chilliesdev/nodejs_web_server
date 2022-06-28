@@ -11,18 +11,23 @@ const verifyJWT = require("./middleware/verifyJWT");
 
 const PORT = process.env.PORT || 3000;
 
+// custom middlewarelogger
 app.use(logger);
 
+// Handle options credentials check - before CORS!
+// and fetch cookies creatials requirement
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser()); //middleware for cookies
 app.use(express.json());
+app.use(cookieParser()); //middleware for cookies
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));
 app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));
+app.use("/refresh", require("./routes/refresh"));
+app.use("/logout", require("./routes/logout"));
 
 app.use(verifyJWT);
 app.use("/employees", require("./routes/api/employees"));
