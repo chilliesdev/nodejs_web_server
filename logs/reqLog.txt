@@ -116,3 +116,7 @@
 20220627	13:47:04	e6bb7341-1cdc-45cc-baaa-7670c3c211f4	POST	undefined	/auth
 20220627	13:47:40	4d19938c-611c-4618-a1af-16ef88e056c0	GET	undefined	/employees
 20220627	13:48:03	4b0b6ac7-5766-4a87-9712-29726dcc03e8	POST	undefined	/employees
+20220628	16:26:32	51eccb3c-fb99-4373-9306-ddc00b8a957e	POST	undefined	/register
+20220628	16:27:56	5f91b2c4-2531-4b4a-9449-33b1dc13b3c9	POST	undefined	/register
+20220628	16:29:41	cbb3c8c4-0825-4c38-a945-84831eade09e	POST	undefined	/register
+20220628	16:30:35	5db9decb-6549-486b-b9a9-cedaa5662705	POST	undefined	/register
